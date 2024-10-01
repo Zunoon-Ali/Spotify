@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        #modal{
+            /* display: none; */
+            font-size: 14px;
+        }
+         .formLayout{
+            max-width: 30vw;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            border: 2px solid black;
+            min-height:40vh ;
+         }
+         .formLayout input::placeholder{
+            padding: 10px;
+            width: 10vw;
+         }
+    </style>
+</head>
+<body>
+    <div id="modal">
+        <div class="formLayout">
+            <h2>Login Form</h2>
+          <form action="" id="form">
+            <div class="form-group">
+              <label for="name" class="form-label required">User Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter Your Name">
+              <label style="color: red; display: none;" id="error_nmae">*UserName is required</label>
+            </div>
+      
+          </form>
+      
+        </div>
+      </div>
+      <script>
+        let val = document.getElementById("#error_name")
+        if(name == ""){
+            error_name.show();
+        }
+      </script>
+</body>
+</html>

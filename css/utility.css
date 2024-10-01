@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Flow+Circular&display=swap');
+/* For Chrome, Edge, and Safari */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #333; /* Dark background for the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #000; /* Black color for the scrollbar thumb */
+  border-radius: 6px; /* Rounded corners */
+  border: 3px solid #333; /* Creates space around the thumb */
+}
+
+ 
+.flex {
+  display: flex;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.border {
+  border: 2px solid red;
+  margin: 3px;
+}
+
+.invert {
+  filter: invert(1);
+}
+.m-1 {
+  margin: 7px;
+}
+.p-1 {
+  padding: 10px;
+}
+.column {
+  flex-direction: column;
+}
+.bg-black {
+  background-color: black;
+  color: white;
+}
+
+.bg-grey {
+  background-color: #0f0f0f;
+}
+
+.rounded {
+  border-radius: 6px;
+}
+
+.p-1 {
+  padding: 12px;
+}
