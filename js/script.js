@@ -60,7 +60,7 @@ const playMusic = (track, pause = false) => {
     document.getElementById("play").src = "/assets/play.svg";
 
     let songUl = document.querySelector(".songList ul");
-    songUl.innerHTML = " "
+    songUl.innerHTML = ""
     for (const song of gana) {
         let cleanSongName = song
             .replaceAll("%20", " ");                      // Trim any extra spaces
@@ -87,12 +87,30 @@ const playMusic = (track, pause = false) => {
 
 }
 
+async function displayAlbums(){
+    
+    let song = await fetch(`http://127.0.0.1:3000/${currFolder}/`)
+    let data = await song.text();
+    let div = document.createElement("div");
+    let anchors = div.getElementsByTagName("a");
+    div.innerHTML = data;
+    Array.from(anchors).forEach(e => {
+        // console.log(e.href);
+        if(e.href.includes("/songs")){
+        console.log(e.href.split("/").slice(-2)[0]);
+        
+        }
+    }) 
+}
+
 async function playSongs() {
     // "songs/ncs"
     gana = await getSongs("songs/ncs");
     // console.log(gana);
     playMusic(gana[0], true)
 
+    //display all the albums
+    displayAlbums();
 
     document.getElementById("play").addEventListener("click", () => {
         if (currentSong.paused) {
@@ -174,13 +192,19 @@ async function playSongs() {
 
     Array.from(document.getElementsByClassName("card")).forEach(e => {
         e.addEventListener("click", async item => {
+            // Clear the existing songs array and UI
+            songs = [];  // Clear the songs array
+            let songUl = document.querySelector(".songList ul");
+            // songUl.innerHTML = "";  // Clear the displayed song list
+    
             // Fetch the new album (song list)
             gana = await getSongs(`songs/${item.currentTarget.dataset.folder}`);
-    
+            
             // Play the first song in the new album
             playMusic(gana[0], true);  // Start playing the first song and update the UI
         });
     });
+    
     
 
 }
