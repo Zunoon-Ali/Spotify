@@ -12,7 +12,7 @@
     width: 100vw;
   }
   .playbar {
-    width: calc(100vw - 30px);
+    width: calc(100vw - 35px);
   }
   .playbar > * {
     /* font-size: 14px; */
@@ -58,25 +58,28 @@
 }
 @media (max-width: 1100px) {
   .card {
-    width: 230px;
+    width: 245px;
   }
 }
 @media (max-width: 900px) {
   .card {
-    width: 220px;
+    width: 350px;
   }
   .spotify-playlist .card-container {
     gap: 20px;
     padding-left: 25px;
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-@media (max-width: 745px) {
+}
+@media (max-width: 775px) {
   .card {
-    width: 210px;
+    width: 300px;
   }
   .spotify-playlist .card-container {
     gap: 20px;
-    padding-left: 20px;
+    padding-left: 10px;
   }
 }
 @media (max-width: 600px) {
@@ -84,6 +87,7 @@
     overflow: hidden;
   }
   .spotify-playlist .card-container {
+    max-height: 58vh;
     justify-content: center;
     align-items: center;
     padding: 0;
@@ -100,13 +104,16 @@
   }
   .card {
     font-size: 14px;
-    width: 62vw;
+    width: 80vw;
     margin: 10px 0;
   }
-  .spotify-playlist {
-    padding: 8px 0px;
-    text-align: center;
-  }
+  .spotify-playlist .card-container {
+    max-height: 62vh;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    padding-bottom: 40px;
+}
   .card .play {
     top: 330px;
     right: 35px;
@@ -133,17 +140,24 @@
   }
 
   .playButtons > * {
-    width: 36px;
+    width: 38px;
   }
   .playbar {
+    width: calc(100% - 0px);
+    font-size: 16px;
+    letter-spacing: 0.7px;
+    font-family: none;
+    position: fixed;
     flex-direction: column;
     gap: 0px;
     align-items: center;
-    padding-top: 10px;
-    padding-bottom: 14px;
-    /* margin-left: 30px; */
-    bottom: 5px;
-  }
+    padding-top: 5px;
+    padding-bottom: 30px;
+    bottom: 0px;
+    margin-left: 0;
+    right: 0px;
+    border-radius: 0;
+}
   .time {
     flex-direction: column;
   }
@@ -155,7 +169,7 @@
     padding-bottom: 5px;
   }
   .seekBar {
-    bottom: 7px;
+    bottom: 12px;
     width: calc(100vw - 70px);
   }
   .playButtons {
@@ -169,6 +183,10 @@
     gap: 10px;
     margin: 10px 0;
     padding: 12px 4px;
+  }
+  .songInfo{
+    text-align: center;
+    padding-left: 0px;
   }
 }
 @media (max-width: 420px) {
