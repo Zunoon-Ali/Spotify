@@ -148,7 +148,7 @@ async function displayAlbums() {
 }
 
 async function playSongs() {
-    gana = await getSongs("songs/arjit");
+    gana = await getSongs("songs/shub");
     // console.log(gana);
     if (gana.length > 0) {
         playMusic(gana[0], true);
