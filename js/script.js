@@ -26,34 +26,12 @@ function formatTime(seconds) {
     // Return formatted time
     return minutes + ":" + remainingSeconds;
 }
-
-// async function getSongs(folder) {
-//     currFolder = folder;
-
-//     let song = await fetch(`http://127.0.0.1:3000/${currFolder}/`);
-//     let data = await song.text();
-//     let div = document.createElement("div");
-//     div.innerHTML = data;
-//     let td = div.getElementsByTagName("a");
-//     console.log(currFolder);
-
-//     // songs = [] // Removed here; clearing is done in the event listener
-
-//     for (let index = 0; index < td.length; index++) {
-//         const element = td[index];
-//         if (element.href.endsWith(".mp3")) {
-//             songs.push(element.href.split(`/${currFolder}/`)[1]);
-//             // ${folder}
-//         }
-//     }
-//     return songs;
-// }
+ 
 
 async function getSongs(folder) {
     currFolder = folder;
-    // console.log("Fetching songs from folder:", currFolder); // Debugging line
 
-    let song = await fetch(`http://127.0.0.1:3000/${currFolder}/`);
+    let song = await fetch(`/${currFolder}/`);
     let data = await song.text();
     let div = document.createElement("div");
     div.innerHTML = data;
@@ -115,7 +93,7 @@ const playMusic = (track, pause = false) => {
 }
 
 async function displayAlbums() {
-    let a = await fetch(`http://127.0.0.1:3000/songs/`);
+    let a = await fetch(`/songs/`);
     let data = await a.text();
 
     let div = document.createElement("div");
@@ -130,7 +108,7 @@ async function displayAlbums() {
         const e = array[index];
         if (e.href.includes("/songs")) {
             let folder = e.href.split("/").slice(-2)[0];
-            let a = await fetch(`http://127.0.0.1:3000/songs/${folder}/info.json`);
+            let a = await fetch(`/songs/${folder}/info.json`);
             let data = await a.json();
             // console.log("data", data);
 
@@ -147,23 +125,9 @@ async function displayAlbums() {
                 </div>
             </div>
         `;
-            //     <div class="card" data-folder="${folder}">
-            //     <div>
-            //         <img src="/songs/${folder}/cover.jpeg" alt="" />
-            //         <h2>${data.title}</h2>
-            //         <p>${data.description}</p>
-            //     </div>
-            //     <div class="play">
-            //         <img src="https://img.icons8.com/ios-glyphs/30/play--v1.png" alt="play--v1" />
-            //     </div>
-            // </div>
-
+       
             cardContainer.innerHTML += cardHTML;
 
-
-            // Attach the event listener after adding the card to the DOM
-            // const card = cardContainer.querySelector(`.card[data-folder="${folder}"]`);
-            // After clearing the card container and generating cards
             cardContainer.addEventListener("click", async (event) => {
                 const card = event.target.closest(".card"); // Get the closest card element
                 if (card) {
