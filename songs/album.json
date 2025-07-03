@@ -1,0 +1,34 @@
+{
+  "albums": [
+    {
+      "folder": "shub",
+      "title": "Shubh Hits",
+      "description": "Best of Shubh songs",
+      "cover": "/assets/shubh.jpeg"
+    },
+    {
+      "folder": "arijt",
+      "title": "Arjit Singh",
+      "description": "Arijit soulful collection",
+      "cover": "/assets/arjit.jpeg"
+    },
+    {
+      "folder": "atif",
+      "title": "Atif Aslam",
+      "description": "Atif's greatest hits",
+      "cover": "/assets/atif.jpeg"
+    },
+    {
+      "folder": "dhinchak pouja",
+        "title": "Dhinchak Pooja",
+        "description": "Dhinchak Pooja's viral songs",
+      "cover": "/assets/dhinchak pooja.jpg"
+    },
+    {
+      "folder": "chahat fateh",
+        "title": "Chahat Fateh Ali Khan",
+        "description": "Chahat's melodious tracks",
+        "cover": "/assets/chahat fateh.jfif"
+    }
+  ]
+}

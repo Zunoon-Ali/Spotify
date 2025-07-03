@@ -67,47 +67,128 @@ const playMusic = (track, pause = false) => {
   });
 };
 
+// async function displayAlbums() {
+//   let a = await fetch(`songs/`);
+//   let data = await a.text();
+//   let div = document.createElement("div");
+//   div.innerHTML = data;
+
+//   let cardContainer = document.querySelector(".card-container");
+//   cardContainer.innerHTML = "";
+//   let anchors = div.getElementsByTagName("a");
+
+//   let array = Array.from(anchors);
+//   for (let index = 0; index < array.length; index++) {
+//     const e = array[index];
+//     if (e.href.includes("/songs/")) {
+//       let folder = e.href.split("/").slice(-2)[0];
+//       let a = await fetch(`songs/${folder}/info.json`);
+//       let data = await a.json();
+
+//       let cardHTML = `
+//         <div class="card" data-folder="${folder}">
+//           <div>
+//             <img src="songs/${folder}/cover.jpeg" alt="" />
+//             <h2>${data.title}</h2>
+//             <p>${data.description}</p>
+//           </div>
+//           <div class="play">
+//             <img src="https://img.icons8.com/ios-glyphs/30/play--v1.png" alt="play" />
+//           </div>
+//         </div>
+//       `;
+
+//       cardContainer.innerHTML += cardHTML;
+//     }
+//   }
+
+//   document.querySelectorAll(".card").forEach(card => {
+//     card.addEventListener("click", async () => {
+//       const folder = card.dataset.folder;
+//       gana = await getSongs(`songs/${folder}`);
+//       let songUl = document.querySelector(".songList ul");
+//       songUl.innerHTML = "";
+//       if (gana.length > 0) {
+//         playMusic(gana[0], true);
+//       } else {
+//         console.warn("No songs found in selected album.");
+//       }
+//     });
+//   });
+// }
+// async function displayAlbums() {
+//   let response = await fetch(`songs/albums.json`);
+//   if (!response.ok) {
+//     console.warn("Could not load albums.json");
+//     return;
+//   }
+//   let data = await response.json();
+//   let albums = data.albums;
+
+//   let cardContainer = document.querySelector(".card-container");
+//   cardContainer.innerHTML = "";
+
+//   albums.forEach(album => {
+//     let cardHTML = `
+//       <div class="card" data-folder="${album.folder}">
+//         <div>
+//           <img src="songs/${album.folder}/${album.cover}" alt="" />
+//           <h2>${album.title}</h2>
+//           <p>${album.description}</p>
+//         </div>
+//         <div class="play">
+//           <img src="https://img.icons8.com/ios-glyphs/30/play--v1.png" alt="play" />
+//         </div>
+//       </div>
+//     `;
+//     cardContainer.innerHTML += cardHTML;
+//   });
+
+//   document.querySelectorAll(".card").forEach(card => {
+//     card.addEventListener("click", async () => {
+//       const folder = card.dataset.folder;
+//       gana = await getSongs(`songs/${folder}`);
+//       if (gana.length > 0) {
+//         playMusic(gana[0], true);
+//       } else {
+//         console.warn("No songs found in selected album.");
+//       }
+//     });
+//   });
+// }
 async function displayAlbums() {
-  let a = await fetch(`songs/`);
-  let data = await a.text();
-  let div = document.createElement("div");
-  div.innerHTML = data;
+  let response = await fetch(`songs/album.json`);
+  if (!response.ok) {
+    console.warn("Could not load albums.json");
+    return;
+  }
+  let data = await response.json();
+  let albums = data.albums;
 
   let cardContainer = document.querySelector(".card-container");
   cardContainer.innerHTML = "";
-  let anchors = div.getElementsByTagName("a");
 
-  let array = Array.from(anchors);
-  for (let index = 0; index < array.length; index++) {
-    const e = array[index];
-    if (e.href.includes("/songs/")) {
-      let folder = e.href.split("/").slice(-2)[0];
-      let a = await fetch(`songs/${folder}/info.json`);
-      let data = await a.json();
-
-      let cardHTML = `
-        <div class="card" data-folder="${folder}">
-          <div>
-            <img src="songs/${folder}/cover.jpeg" alt="" />
-            <h2>${data.title}</h2>
-            <p>${data.description}</p>
-          </div>
-          <div class="play">
-            <img src="https://img.icons8.com/ios-glyphs/30/play--v1.png" alt="play" />
-          </div>
+  albums.forEach(album => {
+    let cardHTML = `
+      <div class="card" data-folder="${album.folder}">
+        <div>
+          <img src="${album.cover}" alt="" />
+          <h2>${album.title}</h2>
+          <p>${album.description}</p>
         </div>
-      `;
+        <div class="play">
+          <img src="https://img.icons8.com/ios-glyphs/30/play--v1.png" alt="play" />
+        </div>
+      </div>
+    `;
+    cardContainer.innerHTML += cardHTML;
+  });
 
-      cardContainer.innerHTML += cardHTML;
-    }
-  }
-
+  // ✅ Click event bind karo baad mein sab cards par
   document.querySelectorAll(".card").forEach(card => {
     card.addEventListener("click", async () => {
       const folder = card.dataset.folder;
       gana = await getSongs(`songs/${folder}`);
-      let songUl = document.querySelector(".songList ul");
-      songUl.innerHTML = "";
       if (gana.length > 0) {
         playMusic(gana[0], true);
       } else {
